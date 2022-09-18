@@ -1,0 +1,65 @@
+<hteml>
+  <header>
+
+  </header>
+  <body>
+    
+    <div class="container">
+      <div class="row">
+        <h1>User info</h1>
+        
+        
+        <table class="table-hover">
+          <tbody>
+            <tr>
+              <td>name</td>
+              <td><%= current_user.name %></td>
+  　         </tr>
+  　         <tr>
+           　　<td>introduction</td>
+            　<td><%= current_user.introduction %></td>
+  　           </tr>
+         </tbody>
+  　   　</table>
+　  　</div>
+　　</div>
+
+
+
+
+
+
+  　<h1>New book</h1>
+  　<%= form_with model: @book, url: '/books', method: :post do |f| %>
+    　 <h4>Title</h4>
+      　 <%= f.text_field :title %>
+    　 <h4>Opinion</h4>
+     　  <%= f.text_area :body %>
+     　  <%= f.submit 'Create Book' %>
+  　<% end %>
+
+
+  <h1>Books</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><p>image</p></th>
+          <th><p>title</p></th>
+          <th><p>Opinion</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+        <tr class="new-table">
+          <td><p><%= book.title %></p></td>
+          <td><p><%= book.body %></p></td>
+          <td><p><%= book.user.name %></p></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+  </body>
+</hteml>

@@ -1,0 +1,20 @@
+<h1>Books</h1>
+
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th><p></p></th>
+      <th><p>Title</p></th>
+      <th><p>Opinion</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.books.each do |book| %>
+      <tr class="new-table">
+        <td><p></p></td>
+        <td><p><%= link_to book.title, "/books/#{book.id}" %></p></td>
+        <td><p><%= book.body %></p></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
