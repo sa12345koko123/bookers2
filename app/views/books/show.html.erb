@@ -1,10 +1,22 @@
+<%= flash[:notice] %>
+
+<%= render 'info', books:@books %>
+
 <h1>Book detail</h1>
 <table class="table table-hover">
   <thead>
-    
+
   </thead>
   <tbody>
     <tr>
+      
+      <td><p>
+        <%= link_to user_path(@book.user) do %>
+          <%= image_tag @book.user.get_profile_image(100,100) %>
+          <%= @book.user.name %>
+        <% end %>
+      </p></td>
+      
       <td><p><%= @book.title %></p></td>
       <td><p><%= @book.body %></p></td>
       <td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
