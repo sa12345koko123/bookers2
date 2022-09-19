@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+    <script src="https://kit.fontawesome.com/add29eec17.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -22,41 +24,57 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              
-            <li class="nav-item">
-            <%= link_to "Home", root_path %>
-            </li>
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path,method: :delete %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Users", users_path %>
-            </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to "About", about_path %>
-            </li>
 
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log in", new_user_session_path %>
-            </li>
+              <li class="nav-item">
+                <%= link_to "Home", user_path(current_user) %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Users", users_path %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Books", books_path %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Log out", destroy_user_session_path,method: :delete %>
+              </li>
+
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Home", root_path %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "About", home_about_path %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Log in", new_user_session_path %>
+              </li>
             <% end %>
             </ul>
-           
+
           </div>
         </div>
       </div>
       </nav>
     </header>
-    
+
      <main>
+
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
     <%= yield %>
     </main>
-    
+
     <footer class="foooter">
       <div class="container text-center">
         <p class="text-muted">CopyRight Infratop.inc</p>

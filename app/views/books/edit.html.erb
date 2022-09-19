@@ -1,31 +1,27 @@
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <h1>Editing Book</h1>
-    
-    <% if @book.errors.any? %>
-      <%= @book.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
     <% end %>
+  </ul>
+<% end %>
     
+<div class="box1">
+  <h2>Editing Book</h2>
     <%= form_with model: @book do |f| %>
-      <p>Title</p>
-      <%= f.text_field :title %>
-      <p>Opinion</p>
-      <%= f.text_area :body %>
-      
-      <%= f.submit "Update Book" %>
+      <h5>Title</h5>
+        <%= f.text_field :title,class:"col-xs-12" %>
+      <h5>Opinion</h5>
+        <%= f.text_area :body,class:"col-xs-12" %>
+      <nav>
+      <%= f.submit "Update Book",class: "col-xs-12 btn btn-primary" %>
+      </nav>
     <% end %>
+    
     <p>
     <%= link_to "show", book_path(@book.id) %>
     |
     <%= link_to "Back", books_path %>
-    </p>  
-  </body>
-</html>
+    </p> 
+</div>

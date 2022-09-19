@@ -1,33 +1,32 @@
 <%= flash[:notice] %>
 
-<div class="col-xs-3">
-  <%= render 'users/info', users:@user %>
-  <%= render 'books/new', books:@books %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class= "col-md-3">
+      <%= render 'users/info', user:@user %>
+      <%= render 'books/new', books:@newbook %>
+    </div>
 
-<h1>Book detail</h1>
-<table class="table table-hover">
-  <thead>
+    <div class="col-md-9">
+      <h1>Book detail</h1>
+      <table class="table table-hover table-inverse">
+        <tr>
+          <td>
+            <%= link_to user_path(@book.user_id) do %>
+              <%= image_tag @book.user.get_profile_image(100,100) %>
+                <nav>
+                  <%= @book.user.name %>
+                </nav>
+            <% end %>
+          </td>
 
-  </thead>
-  <tbody>
-    <tr>
-      
-      <td><p>
-        <%= link_to user_path(@book.user) do %>
-          <%= image_tag @book.user.get_profile_image(100,100) %>
-          <%= @book.user.name %>
-        <% end %>
-      </p></td>
-      
-      <td><p><%= @book.title %></p></td>
-      <td><p><%= @book.body %></p></td>
-      <td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
-      <td><span class="label label-danger">
-      <% if @book.user == current_user %>
-        <%= link_to "destroy", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>
-      <% end %> 
-      </span></td>
-    </tr>
-  </tbody>
-</table>
+          <td><%= link_to @book.title %></td>
+          <td><%= @book.body %></td>
+
+          <% if @book.user_id == current_user.id %>
+            <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn-sm btn-success"%></td>
+            <td><%= link_to "Destroy", book_path(@book.id), class:"btn-sm btn-danger destroy(@book.id)", method: :delete,data: {confirm: "Are you sure？"} %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>

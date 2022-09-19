@@ -1,79 +1,58 @@
-<hteml>
-  <header>
-
-  </header>
-  <body>
-  　<% if @book.errors.any? %>
-      <%= @book.errors.count %>errors prohibited this obj from being saved:
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
-    
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-3" style="background-color: white">
-          <h1>User info</h1>
-          <%= image_tag current_user.get_profile_image(100,100) %>
-        
-          <table class="table-hover">
-            <tbody>
-              <tr>
-                <td>name</td>
-                <td><%= current_user.name %></td>
-  　           </tr>
-  　           <tr>
-           　  　<td>introduction</td>
-              　<td><%= current_user.introduction %></td>
-  　           </tr>
-            </tbody>
-  　     　</table>
-  　       <%= link_to "編集", edit_user_path(current_user.id) %>
-　  　</div>
-　　</div>
+  </ul>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class= "col-md-3">
+      <h2>User info</h2>
+
+      <%= image_tag current_user.get_profile_image(100,100) %>
+      <h5>name</h5>
+        <%= current_user.name %>
+      <h5>introduction</h5>
+        <%= current_user.introduction %>
+        <%= link_to "edit", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>
 
 
+      <h2>New book</h2>
 
+      <%= form_with model: @book, url: '/books', method: :post do |f| %>
+      <h4>Title</h4>
+        <%= f.text_field :title %>
+      <h4>Opinion</h4>
+        <%= f.text_area :body %>
+      <nav>
+        <%= f.submit 'Create Book', class: "col-xs-3 btn-sm btn-success"%>
+      </nav>
+      <% end %>
+    </div>
 
-
-
-  　<h1>New book</h1>
-  　
-
-
-  　<%= form_with model: @book, url: '/books', method: :post do |f| %>
-    　 <h4>Title</h4>
-      　 <%= f.text_field :title %>
-    　 <h4>Opinion</h4>
-     　  <%= f.text_area :body %>
-     　  <%= f.submit 'Create Book' %>
-  　<% end %>
-
-
-  <h1>Books</h1>
-    <table class="table table-striped">
-      <thead>
+    <div class= "col-md-9">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
         <tr>
-          <th><p>image</p></th>
-          <th><p>title</p></th>
-          <th><p>Opinion</p></th>
+          <th>image</th>
+          <th>title</th>
+          <th colspan="3">Opinion</th>
         </tr>
-      </thead>
-      <tbody>
+
+
         <% @books.each do |book| %>
-        <tr class="new-table">
-          <td><p><%= image_tag book.user.get_profile_image(100,100) %></p></td>
-          <td><p><%= link_to book.title, "/books/#{book.id}" %></p></td>
-          <td><p><%= book.body %></p></td>
+        <tr>
+          <td><%= link_to user_path(book.user_id) do %>
+                <%= image_tag book.user.get_profile_image(100,100) %></td>
+              <% end %>
+          <td><%= link_to book.title, "/books/#{book.id}" %></td>
+          <td><%= book.body %></td>
         </tr>
         <% end %>
-      </tbody>
-    </table>
-
-
-
-  </body>
-</hteml>
+      </table>
+    </div>
+  </div>
+</div>

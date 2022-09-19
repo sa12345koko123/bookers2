@@ -1,21 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3" style="background-color: white">
-      <h1>User info</h1>
-      <%= image_tag current_user.get_profile_image(100,100) %>
-        
-      <table class="table-hover">
-        <tbody>
-          <tr>
-            <td>name</td>
-            <td><%= current_user.name %></td>
-  　       </tr>
-  　       <tr>
-          　<td>introduction</td>
-          　<td><%= current_user.introduction %></td>
-  　       </tr>
-        </tbody>
-  　 　</table>
-  　   <%= link_to "編集", edit_user_path(current_user.id) %>
-　</div>
-</div>
+<table class="table table-user">
+  <h2>User info</h2>
+  
+  <thead>
+   <tr>
+    <%= image_tag user.get_profile_image(100,100) %>
+   </tr>
+  </thead>
+  
+  <tbody>
+   <tr>
+     <th>name</th>
+     <th><%= user.name %></th>
+   </tr>
+   
+   <tr>
+    <th>introduction</th>
+    <th><%= user.introduction %></th>
+   </tr>
+   
+   <tr>
+    <th colspan"2">
+     <%= link_to "edit", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>  
+    </th>
+   </tr>
+  </tbody>  
+</table> 
+    
+   
