@@ -1,15 +1,18 @@
-<%= render 'books/info', books:@books %>
+<div class="col-xs-3">
+  <%= render 'users/info', users:@user %>
+  <%= render 'books/new', books:@books %>
+</div>
 
 <h1>Users</h1>
 
 <table class="table table-striped">
-  
+
   <thead>
     <th><p>image</p></th>
     <th><p>name</p></th>
     <th><p>show</p></th>
   </thead>
-  
+
   <tbody>
     <% @users.each do |user| %>
     <tr class="new-table">
@@ -21,6 +24,6 @@
 
     <% end %>
   </tbody>
-  
+
 </table>
 

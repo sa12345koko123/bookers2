@@ -1,6 +1,9 @@
 <%= flash[:notice] %>
 
-<%= render 'info', books:@books %>
+<div class="col-xs-3">
+  <%= render 'users/info', users:@user %>
+  <%= render 'books/new', books:@books %>
+</div>
 
 <h1>Book detail</h1>
 <table class="table table-hover">
@@ -20,7 +23,11 @@
       <td><p><%= @book.title %></p></td>
       <td><p><%= @book.body %></p></td>
       <td><span class="label label-success"><%= link_to "edit", edit_book_path(@book.id) %></span></td>
-      <td><span class="label label-danger"><%= link_to "destroy", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %></span></td>
+      <td><span class="label label-danger">
+      <% if @book.user == current_user %>
+        <%= link_to "destroy", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>
+      <% end %> 
+      </span></td>
     </tr>
   </tbody>
 </table>

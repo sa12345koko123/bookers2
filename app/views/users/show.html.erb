@@ -1,5 +1,8 @@
-
-<%= render 'books/info', books:@books %>
+<%= flash[:notice] %>
+<div class="col-xs-3">
+  <%= render 'users/info', users:@user %>
+  <%= render 'books/new', books:@books %>
+</div>
 
 <h1>Books</h1>
 
