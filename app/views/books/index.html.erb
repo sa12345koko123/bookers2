@@ -44,10 +44,11 @@
       <h2>New book</h2>
 
       <%= form_with model: @book do |f| %>
+
       <h5>Title</h5>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, style: "width:100%" %>
       <h5>Opinion</h5>
-        <%= f.text_area :body %>
+        <%= f.text_area :body, style: "width:100%" %>
       <nav>
         <%= f.submit 'Create Book', class: "col-xs-3 btn-sm btn-success"%>
       </nav>
