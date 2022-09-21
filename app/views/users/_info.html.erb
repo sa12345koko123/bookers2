@@ -17,13 +17,11 @@
     <th>introduction</th>
     <th><%= user.introduction %></th>
    </tr>
-
-   <tr>
-    <th colspan"2">
-     <%= link_to "edit", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>
-    </th>
-   </tr>
   </tbody>
-</table>
-
+</table> 
+<button type="button" class="btn btn-secondary btn-block text-white">
+  <%= link_to edit_user_path(user.id), class: "btn btn-secondary text-white" do %>
+    <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+</button>
 
